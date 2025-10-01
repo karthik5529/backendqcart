@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import secrets
 # Load environment variables
 load_dotenv()
 
@@ -297,10 +298,10 @@ for product in PRODUCTS:
 
 # --- FastAPI App Initialization ---
 app = FastAPI()
-
+generated_secret_key = secrets.token_hex(32)
 # --- Middleware Configuration ---
 # Session middleware for user authentication
-app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY", "your_default_secret_key"))
+app.add_middleware(SessionMiddleware, secret_key=generated_secret_key)
 
 # CORS middleware to allow the frontend to communicate with the backend
 origins = [
@@ -319,7 +320,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # --- OAuth Configuration ---
 oauth = OAuth()
 oauth.register(

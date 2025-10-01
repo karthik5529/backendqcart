@@ -7,3 +7,4 @@ itsdangerous
 starlette
 gunicorn  
 httpx
+secrets
