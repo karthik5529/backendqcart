@@ -5,7 +5,6 @@ authlib
 requests
 itsdangerous
 starlette
-gunicorn  
+gunicorn
 httpx
-secrets
-cryptography
+cryptography>=41.0.0
