@@ -6,3 +6,4 @@ requests
 itsdangerous
 starlette
 gunicorn  
+httpx
