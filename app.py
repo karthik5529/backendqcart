@@ -301,8 +301,14 @@ app = FastAPI()
 generated_secret_key = secrets.token_hex(32)
 # --- Middleware Configuration ---
 # Session middleware for user authentication
-app.add_middleware(SessionMiddleware, secret_key=generated_secret_key)
-
+# --- Session Middleware for authentication ---
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=generated_secret_key,
+    session_cookie="session",
+    same_site="none",   # allows cross-site cookies (GitHub Pages -> Render backend)
+    https_only=True     # required when SameSite=None
+)
 # CORS middleware to allow the frontend to communicate with the backend
 origins = [
     "http://localhost:3000",
