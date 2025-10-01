@@ -364,8 +364,9 @@ async def get_current_user(request: Request):
 
 @app.get('/login')
 async def login(request: Request):
-    redirect_uri = request.url_for('auth')
+    redirect_uri = "https://backendqcart.onrender.com/auth/callback"  
     return await oauth.google.authorize_redirect(request, redirect_uri)
+
 
 @app.get('/auth/callback', name='auth')
 async def auth(request: Request):
