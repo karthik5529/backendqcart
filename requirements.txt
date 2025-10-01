@@ -8,3 +8,4 @@ starlette
 gunicorn  
 httpx
 secrets
+cryptography
